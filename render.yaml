@@ -1,0 +1,26 @@
+# Render Blueprint — deploys the FastAPI backend as a free web service.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: personal-api
+    runtime: python
+    rootDir: personal_api
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.1
+      - key: ENVIRONMENT
+        value: production
+      - key: SECRET_KEY
+        generateValue: true          # random value, viewable in the Render dashboard
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true          # view in dashboard → Environment (needed to log in)
+      - key: ADMIN_EMAIL
+        value: dmusumali01@gmail.com
+      - key: CORS_ORIGINS
+        sync: false                  # you'll be prompted to enter your Netlify URL
