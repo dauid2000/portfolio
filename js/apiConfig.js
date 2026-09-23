@@ -6,4 +6,5 @@
    Same-origin deploy: ""  (site and API served from the same domain)
    ========================================================================== */
 
-window.PORTFOLIO_API_BASE = "http://127.0.0.1:8000";
+/* Production: Render free-tier web service (FastAPI backend). */
+window.PORTFOLIO_API_BASE = "https://personal-api-zo5g.onrender.com";
